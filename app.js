@@ -108,7 +108,10 @@ function spawnMsgBox(soundTitle, soundName) {
     }
 
     audio.addEventListener("timeupdate", () => {
-        progress.innerHTML = `${soundTitle} <br> ${(audio.currentTime / 60).toFixed(2)} <progress value="${audio.currentTime}" max="${audio.duration}"></progress> ${(audio.duration / 60).toFixed(2)}`
+        let duration = audio.duration;
+        if(!Number.isInteger(duration))
+            duration = 0;
+        progress.innerHTML = `${soundTitle} <br> ${(audio.currentTime / 60).toFixed(2)} <progress value="${audio.currentTime}" max="${duration}"></progress> ${(duration / 60).toFixed(2)}`
     })
 }
 
